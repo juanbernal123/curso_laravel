@@ -1,0 +1,22 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+// Variables
+@import "variables";
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+//
+//estilo del body
+body {
+    background-color: azure;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+//estilo del menu
+#menu {
+    background-color: blueviolet;
+    color: white;
+    .nav-link {
+        text-decoration-line: underline;
+        color: white;
+    }
+}
