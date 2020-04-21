@@ -13,7 +13,12 @@
         <tr>
             <th scope="row">{{ $item->id }}</th>
             <td>{{ $item->nombre}}</td>
-            <td></td>
+            <td>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditar"
+                    onclick="ver_datos({{ $item->id }});">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+            </td>
         </tr>
 
         @endforeach

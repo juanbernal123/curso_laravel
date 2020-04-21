@@ -63,7 +63,8 @@ class CiudadController extends Controller
      */
     public function edit($id)
     {
-        //
+        $datos = Ciudad::findOrFail($id);
+        return response()->json($datos);
     }
 
     /**
@@ -75,7 +76,10 @@ class CiudadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datos = Ciudad::findOrFail($id);
+        if ($datos->update(['nombre' => $request->nombre])) {
+            return response()->json('ok');
+        }
     }
 
     /**

@@ -15,6 +15,10 @@
 
 @include('ciudades.tabla')
 
+{{-- incluimos el modal --}}
+@include('ciudades.modalEditar')
+
+
 
 @section('titulo_modal', 'Agregar Ciudad')
 
@@ -35,9 +39,38 @@
 @endsection
 
 
+@endsection
 
 
 @endsection
 
+@section('scripts')
+<script>
+    function ver_datos(id) {
+        $.get('ciudades/' + id + '/edit', function (data) {
+            // console.log(data);
+            $('#id').val(data.id);
+            $('input[name="nombre"]').val(data.nombre);
+        });
 
+        $('#btn_actualizar').on('click', function () {
+            var id = $('#id').val();
+            var nombre = $('input[name="nombre"]').val();
+            var token = $('input[name="_token"]').val();
+            $.ajax({
+                url: 'ciudades/' + id,
+                type: 'PUT',
+                data: {
+                    nombre: nombre,
+                    _token: token
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+
+    }
+
+</script>
 @endsection
