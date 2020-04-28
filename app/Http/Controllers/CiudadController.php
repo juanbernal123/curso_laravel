@@ -14,8 +14,7 @@ class CiudadController extends Controller
      */
     public function index()
     {
-        $datos = Ciudad::all();
-        return \view('ciudades.index', \compact('datos'));
+        return \view('ciudades.index');
     }
 
     /**
@@ -90,6 +89,17 @@ class CiudadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $datos = Ciudad::findOrFail($id);
+        if ($datos->delete()) {
+            return response()->json('ok');
+        }
+    }
+
+    //codigo personal
+
+    public function tabla()
+    {
+        $datos = Ciudad::all();
+        return view('ciudades.tabla', \compact('datos'));
     }
 }

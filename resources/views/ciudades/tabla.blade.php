@@ -18,6 +18,8 @@
                     onclick="ver_datos({{ $item->id }});">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
+
+                <button class="btn btn-danger" onclick="eliminar({{ $item->id }});">Eliminar</button>
             </td>
         </tr>
 

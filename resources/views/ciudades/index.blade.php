@@ -4,7 +4,7 @@
 
 <section class="text-right">
 
-    <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevo">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevo" onclick="$('#formNuevo')[0].reset();">
         <i class="fas fa-plus-circle"></i>
         Nuevo
     </button>
@@ -13,7 +13,7 @@
 
 <br>
 
-@include('ciudades.tabla')
+<div id="tabla"></div>
 
 {{-- incluimos el modal --}}
 @include('ciudades.modalEditar')
@@ -24,7 +24,7 @@
 
 @section('cuerpo_modal')
 
-<form action="{{ route('ciudades.store')}}" method="post">
+<form id="formNuevo" action="{{ route('ciudades.store')}}" method="post">
     @csrf
     @include('ciudades.form')
 
@@ -46,6 +46,10 @@
 
 @section('scripts')
 <script>
+    $(document).ready(function () {
+        ver_tabla();
+    });
+
     function ver_datos(id) {
         $.get('ciudades/' + id + '/edit', function (data) {
             // console.log(data);
@@ -65,11 +69,54 @@
                     _token: token
                 },
                 success: function (data) {
-                    console.log(data);
+                    if (data == "ok") {
+                        $('#modalEditar').modal('hide');
+                        // swal("Guardado con exito", "", "success");
+                        alertify.success('Guardado con exito');
+                        ver_tabla();
+                    }
                 }
             });
         });
 
+    }
+
+    function ver_tabla() {
+        $.get('tblCiudades', function (data) {
+            $('#tabla').empty().html(data);
+        });
+    }
+
+    function eliminar(id) {
+        var ruta = 'ciudades/' + id;
+        var token = $('input[name="_token"]').val();
+
+        swal({
+                title: "Esta seguro?",
+                text: "Ejemplo",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+
+                    $.ajax({
+                        url: ruta,
+                        data: {
+                            _token: token
+                        },
+                        type: 'DELETE',
+                        success: function (data) {
+                            if (data == 'ok') {
+                                swal('Eliminado con exito', '', 'success');
+                                ver_tabla();
+                            }
+                        }
+                    });
+
+                }
+            });
     }
 
 </script>

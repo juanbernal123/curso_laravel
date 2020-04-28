@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/alertify.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/themes/bootstrap.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('/css/app.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('/css/estilo.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('/css/all.css') }}"> --}}
@@ -13,6 +15,8 @@
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('/js/all.js') }}"></script>
+    <script src="{{ asset('/js/sweetalert.js') }}"></script>
+    <script src="{{ asset('/js/alertify.js') }}"></script>
     <title>@yield('titulo')</title>
 </head>
 

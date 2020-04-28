@@ -20,3 +20,4 @@ Route::get('plantilla', function () {
 });
 
 Route::resource('ciudades', 'CiudadController')->except('create', 'show');
+Route::get('tblCiudades', 'CiudadController@tabla');
